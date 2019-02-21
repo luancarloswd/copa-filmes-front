@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FilmeService } from './service/filme.service';
+import { Filme } from './model/filme';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'copa-filmes-front';
+  filmes: Filme[];
+
+  constructor(public filmeService: FilmeService) {
+      filmeService.obterFilmes().subscribe((filmes) => {
+        this.filmes = filmes;
+      });
+  }
 }
