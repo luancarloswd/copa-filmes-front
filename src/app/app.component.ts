@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FilmeService } from './service/filme.service';
 import { Filme } from './model/filme';
+import { Copa } from './model/copa';
+import { MatCheckboxChange } from '../../node_modules/@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +10,16 @@ import { Filme } from './model/filme';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'copa-filmes-front';
-  filmes: Filme[];
+  filmesEscolhidos: string[];
+  copaGerada: Copa;
 
-  constructor(public filmeService: FilmeService) {
-      filmeService.obterFilmes().subscribe((filmes) => {
-        this.filmes = filmes;
-      });
+  constructor() { }
+
+  atribuirFilmes(filmesEscolhidos: string[]) {
+    this.filmesEscolhidos = filmesEscolhidos;
+  }
+
+  atribuirCopa(copa) {
+    this.copaGerada = copa;
   }
 }

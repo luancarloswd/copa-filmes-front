@@ -23,7 +23,7 @@ export class FilmeService {
         return this.http.get<Filme[]>(`${environment.serviceUrl}${this.route}`);
     }
 
-    gerarCopa(filmes: string[]): Observable<Copa> {
-        return this.http.post<Copa>(`${environment.serviceUrl}${this.route}`, { idsFilmes: filmes });
+    gerarCopa(idsFilmes: string[]): Observable<Copa> {
+        return this.http.post<Copa>(`${environment.serviceUrl}${this.route}`, idsFilmes);
     }
 }

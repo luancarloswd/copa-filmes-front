@@ -1,0 +1,6 @@
+<div fxLayout="row wrap" fxFlex="100%" fxLayoutAlign="center" fxLayoutGap="1%">
+  <mat-card *ngFor="let filme of filmes" fxFlex="20%" fxLayout="column" fxLayoutAlign="center begin" [style.background-color]="primary">
+    <mat-checkbox class="example-margin" (change)="escolherFilme($event, filme.id)">{{filme.titulo}}</mat-checkbox>
+    {{filme.ano}}
+  </mat-card>
+</div>
