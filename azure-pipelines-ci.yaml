@@ -18,10 +18,10 @@ steps:
     npm install -g @angular/cli
     npm install
     ng build --prod
-    ng e2e --prod
-    ng test
     docker build -f Dockerfile -t $(dockerId)/$(imageName):latest -t $(dockerId)/$(imageName):$(Build.BuildId) .
     docker login -u $(dockerId) -p $pswd
     docker push $(dockerId)/$(imageName):$(Build.BuildId)
     docker push $(dockerId)/$(imageName):latest
+  env:
+    pswd: $(dockerPassword)
   displayName: 'npm install and build'
