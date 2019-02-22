@@ -14,6 +14,7 @@ WORKDIR /ng-app
 
 COPY . .
 
+RUN npm install -g @angular/cli@1.7.1 --unsafe
 ## Build the angular app in production mode and store the artifacts in dist folder
 RUN ng build --prod
 
