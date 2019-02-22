@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CabecalhoComponent } from './cabecalho.component';
+import { MatDivider, MatCard } from '@angular/material';
 
 describe('CabecalhoComponent', () => {
   let component: CabecalhoComponent;
@@ -8,7 +9,7 @@ describe('CabecalhoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CabecalhoComponent ]
+      declarations: [ CabecalhoComponent, MatDivider, MatCard ]
     })
     .compileComponents();
   }));

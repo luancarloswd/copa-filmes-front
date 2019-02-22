@@ -1,12 +1,34 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { CabecalhoComponent } from './component/cabecalho/cabecalho.component';
+import { BtnGerarCopaComponent } from './component/btn-gerar-copa/btn-gerar-copa.component';
+import { ListaFilmesComponent } from './component/lista-filmes/lista-filmes.component';
+import { ResultadoCopaComponent } from './component/resultado-copa/resultado-copa.component';
+import { MatDivider, MatCard, MatCheckbox, MatBadge, MatRipple } from '@angular/material';
+import { FilmeService } from './service/filme.service';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        CabecalhoComponent,
+        BtnGerarCopaComponent,
+        ListaFilmesComponent,
+        ResultadoCopaComponent,
+        MatDivider,
+        MatCard,
+        MatCheckbox,
+        MatBadge,
+        MatRipple
       ],
+      imports: [
+        HttpClientModule
+      ],
+      providers: [
+        FilmeService
+      ]
     }).compileComponents();
   }));
 
@@ -16,16 +38,4 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'copa-filmes-front'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('copa-filmes-front');
-  });
-
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to copa-filmes-front!');
-  });
 });

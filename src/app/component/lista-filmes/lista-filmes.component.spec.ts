@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListaFilmesComponent } from './lista-filmes.component';
+import { MatCard, MatCheckbox, MatRipple } from '@angular/material';
+import { FilmeService } from 'src/app/service/filme.service';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ListaFilmesComponent', () => {
   let component: ListaFilmesComponent;
@@ -8,7 +11,9 @@ describe('ListaFilmesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListaFilmesComponent ]
+      declarations: [ ListaFilmesComponent, MatCard, MatCheckbox, MatRipple ],
+      providers: [FilmeService],
+      imports: [HttpClientModule]
     })
     .compileComponents();
   }));

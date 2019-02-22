@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BtnGerarCopaComponent } from './btn-gerar-copa.component';
+import { FilmeService } from 'src/app/service/filme.service';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('BtnGerarCopaComponent', () => {
   let component: BtnGerarCopaComponent;
@@ -8,7 +10,9 @@ describe('BtnGerarCopaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BtnGerarCopaComponent ]
+      declarations: [ BtnGerarCopaComponent ],
+      providers: [FilmeService],
+      imports: [HttpClientModule]
     })
     .compileComponents();
   }));
