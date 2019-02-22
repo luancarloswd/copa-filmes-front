@@ -4,7 +4,10 @@ WORKDIR /app
 COPY package.json /app
 RUN npm install
 COPY . /app
-RUN $(npm bin)/ng build --prod
+
+RUN npm install -g @angular/cli@1.7.1 --unsafe
+
+RUN ng build --prod
 
 FROM nginx
 COPY nginx.prod.conf /etc/nginx/nginx.conf
