@@ -6,7 +6,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  imageName: 'copa-filmes-api'
+  imageName: 'copa-filmes-front'
   
 steps:
 - task: NodeTool@0
