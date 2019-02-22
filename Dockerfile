@@ -26,7 +26,7 @@ RUN npm install -g @angular/cli@1.7.1 --unsafe
 COPY . /usr/src/app
 
 # generate build
-RUN npm run build
+RUN npm run build --prod
 
 ##################
 ### production ###
@@ -42,7 +42,7 @@ COPY nginx/default.conf /etc/nginx/conf.d/
 RUN rm -rf /usr/share/nginx/html/*
 
 ## From 'builder' stage copy over the artifacts in dist folder to default nginx public folder
-COPY --from=builder /ng-app/dist /usr/share/nginx/html
+COPY --from=builder /dist /usr/share/nginx/html
 
 # expose port 80
 EXPOSE 80
