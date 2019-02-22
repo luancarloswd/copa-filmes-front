@@ -1,27 +1,42 @@
-### STAGE 1: Build ###
+#########################
+### build environment ###
+#########################
 
-# We label our stage as 'builder'
-FROM node:9-alpine as builder
+# base image
+FROM node:9.6.1 as builder
 
-COPY package.json package-lock.json ./
+# install chrome for protractor tests
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+RUN sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+RUN apt-get update && apt-get install -yq google-chrome-stable
 
-RUN npm set progress=false && npm config set depth 0 && npm cache clean --force
+# set working directory
+RUN mkdir /usr/src/app
+WORKDIR /usr/src/app
 
-## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
-RUN npm i && mkdir /ng-app && cp -R ./node_modules ./ng-app
+# add `/usr/src/app/node_modules/.bin` to $PATH
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
-WORKDIR /ng-app
-
-COPY . .
-
+# install and cache app dependencies
+COPY package.json /usr/src/app/package.json
+RUN npm install
 RUN npm install -g @angular/cli@1.7.1 --unsafe
-## Build the angular app in production mode and store the artifacts in dist folder
-RUN ng build --prod
 
+# add app
+COPY . /usr/src/app
 
-### STAGE 2: Setup ###
+# run tests
+RUN ng test --watch=false
 
-FROM nginx:1.13.3-alpine
+# generate build
+RUN npm run build
+
+##################
+### production ###
+##################
+
+# base image
+FROM nginx:1.13.9-alpine
 
 ## Copy our default nginx config
 COPY nginx/default.conf /etc/nginx/conf.d/
@@ -31,5 +46,8 @@ RUN rm -rf /usr/share/nginx/html/*
 
 ## From 'builder' stage copy over the artifacts in dist folder to default nginx public folder
 COPY --from=builder /ng-app/dist /usr/share/nginx/html
+
+# expose port 80
+EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
