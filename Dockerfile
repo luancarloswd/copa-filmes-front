@@ -26,7 +26,7 @@ RUN npm install -g @angular/cli@1.7.1 --unsafe
 COPY . /usr/src/app
 
 # run tests
-RUN ng test --watch=false
+RUN ng test --no-watch --code-coverage
 
 # generate build
 RUN npm run build
