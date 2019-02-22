@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  serviceUrl: ''
+  serviceUrl: 'https://copa-filmes-api.azurewebsites.net/api/v1/'
 };
