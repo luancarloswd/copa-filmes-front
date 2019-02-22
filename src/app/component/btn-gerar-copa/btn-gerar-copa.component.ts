@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FilmeService } from '../service/filme.service';
-import { Copa } from '../model/copa';
+import { Copa } from 'src/app/model/copa';
+import { FilmeService } from '../../service/filme.service';
 
 @Component({
   selector: 'app-btn-gerar-copa',

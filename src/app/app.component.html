@@ -1,8 +1,4 @@
-<div fxLayout="row wrap" fxLayoutWrap>
-  <app-cabecalho></app-cabecalho>
-  <app-btn-gerar-copa [filmesEscolhidos]="filmesEscolhidos" (obterCopa)="atribuirCopa($event)"></app-btn-gerar-copa>
-  <app-lista-filmes (obterFilmesEscolhidos)="atribuirFilmes($event)"></app-lista-filmes>
-  <h4 *ngFor="let resultado of copaGerada?.resultado | keyvalue" matBadge="{{resultado.key}}" matBadgeSize="large">
-    {{resultado.value.titulo}}
-  </h4>
-</div>
+<app-cabecalho></app-cabecalho>
+<app-lista-filmes (obterFilmesEscolhidos)="atribuirFilmes($event)"></app-lista-filmes>
+<app-resultado-copa [copa]="copaGerada"></app-resultado-copa>
+<app-btn-gerar-copa [filmesEscolhidos]="filmesEscolhidos" (obterCopa)="atribuirCopa($event)"></app-btn-gerar-copa>

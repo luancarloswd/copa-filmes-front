@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { Filme } from '../model/filme';
-import { FilmeService } from '../service/filme.service';
-import { MatCheckboxChange } from '../../../node_modules/@angular/material';
+import { Filme } from '../../model/filme';
+import { FilmeService } from '../../service/filme.service';
+import { MatCheckboxChange } from '../../../../node_modules/@angular/material';
 
 @Component({
   selector: 'app-lista-filmes',
