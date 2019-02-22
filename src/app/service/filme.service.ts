@@ -9,7 +9,7 @@ import { Copa } from '../model/copa';
 export class FilmeService {
     route: string;
     optionsHeaders: any;
-    constructor(private http: HttpClient){
+    constructor(private http: HttpClient) {
         this.route = 'filme';
         this.optionsHeaders = {
             headers: new HttpHeaders({
@@ -19,7 +19,7 @@ export class FilmeService {
         };
     }
 
-    obterFilmes(): Observable<Filme[]>{
+    obterFilmes(): Observable<Filme[]> {
         return this.http.get<Filme[]>(`${environment.serviceUrl}${this.route}`);
     }
 

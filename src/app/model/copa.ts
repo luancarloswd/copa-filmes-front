@@ -1,4 +1,4 @@
-import { Partida } from "./partida";
+import { Partida } from './partida';
 import { Resultado } from './resultado';
 import { Filme } from './filme';
 
